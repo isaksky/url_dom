@@ -8,7 +8,7 @@ For example:
 (ns my-ns
  (:require [url_dom.core :as u]))
 
-(url_dom.core/parse "sub1.sub2.domain.co.uk")
+(u/parse "sub1.sub2.domain.co.uk")
 ;=> {:public-suffix "co.uk", :domain "domain.co.uk", :rule-used "*.uk"}
 ```
 
