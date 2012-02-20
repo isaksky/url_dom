@@ -12,3 +12,14 @@ For example:
 ;=> {:public-suffix "co.uk", :domain "domain.co.uk", :rule-used "*.uk"}
 ```
 
+If you are trying to follow the code, look at this page:
+
+http://publicsuffix.org/list/
+
+I used the same exact terminology in my code.
+
+## A couple of things I'll probably add soon:
+
+* Way more tests. Will probably come from rake task that converts all of these tests they provide: http://publicsuffix.org/list/test.txt
+* If java has a built in URI class, add some methods, and/or accept it as an argument.
+
