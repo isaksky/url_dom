@@ -16,7 +16,7 @@ If you are trying to follow the code, look at this page:
 
 http://publicsuffix.org/list/
 
-I used the same exact terminology in my code.
+The code uses the same terminology.
 
 ## A couple of things I'll probably add soon:
 
