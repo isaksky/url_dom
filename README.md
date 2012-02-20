@@ -18,8 +18,9 @@ http://publicsuffix.org/list/
 
 The code uses the same terminology.
 
-## A couple of things I'll probably add soon:
+**Things I'll do next:**
 
-* Way more tests. Will probably come from rake task that converts all of these tests they provide: http://publicsuffix.org/list/test.txt
+* Add more tests. Will probably write a rake task that converts all of these tests they provide: http://publicsuffix.org/list/test.txt
 * If java has a built in URI class, add some methods, and/or accept it as an argument.
+* Upload to clojars. make sure installation and usage is straightforward.
 
