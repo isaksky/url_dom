@@ -1,6 +1,7 @@
 (ns url_dom.core
   (:import (java.io BufferedReader FileReader))
-  (:require [clojure.string :as str]))
+  (:require [clojure.string :as str])
+  (:import (java.net URI)))
 
 (defn- working-dir-path [path]
   (str (. System getProperty "user.dir") path ))
@@ -66,4 +67,16 @@
 (defn parse [domain]
   (let [domain (str/lower-case domain)]
     (let [rule (get-prevailing-rule domain)]
-       (apply-rule rule domain))))
+      (apply-rule rule domain))))
+
+(defprotocol domain-info
+  (domain [s])
+  (public-suffix [s]))
+
+;;; Makes it so you can do:
+;;; (domain (URI. "http://www.zombo.com")) or
+;;; (public-suffix (URI. "http://www.zombo.com"))
+(extend java.net.URI
+  domain-info
+  {:domain (fn [uri] (:domain (parse (.getHost uri))))
+   :public-suffix (fn [uri] (:public-suffix (parse (.getHost uri))))})

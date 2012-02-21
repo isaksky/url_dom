@@ -58,3 +58,6 @@
   (is (= "city.kyoto.jp" (:domain (parse "www.city.kyoto.jp"))))
   (is (= "b.test.om" (:domain (parse "a.b.test.om")))))
 
+(def URI-extension-test
+  (is (= "zombo.com" (domain (URI. "http://www.zombo.com"))))
+  (is (= "co.uk" (public-suffix (URI. "http://www.zombo.co.uk")))))
