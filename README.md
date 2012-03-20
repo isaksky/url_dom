@@ -26,10 +26,9 @@ If you are trying to follow the code, look at this page:
 
 http://publicsuffix.org/list/
 
-The code uses the same terminology.
+The code uses the same terminology. I don't use algorithm specified on that site, as it doesn't make all the tests pass.
 
 **Things I'll do next:**
 
-* Add more tests. Will probably write a rake task that converts all of these tests they provide: http://publicsuffix.org/list/test.txt
 * Upload to clojars. make sure installation and usage is straightforward.
 

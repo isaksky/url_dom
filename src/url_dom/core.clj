@@ -53,21 +53,30 @@
 
 (defn- apply-rule [rule domain]
   (let [domain-labels (get-domain-labels domain)
+        domain-labels-count (count domain-labels)
         rule-labels-count (count (:labels rule))]
-    (cond (< (count domain-labels) rule-labels-count) nil
-          :else {:public-suffix (str/join "."
-                                          (take-last rule-labels-count domain-labels))
-                 :domain (str/join "."
-                                   (take-last (if (:exception? rule)
-                                                rule-labels-count
-                                                (inc rule-labels-count))
-                                              domain-labels))
-                 :rule-used (:orig rule)})))
+    (if (or (> (count domain-labels) rule-labels-count)
+            (and (:exception? rule)
+                 (= domain-labels-count rule-labels-count)))
+      {:public-suffix (str/join "."
+                                (take-last rule-labels-count domain-labels))
+       :domain (str/join "."
+                         (take-last (if (:exception? rule)
+                                      rule-labels-count
+                                      (inc rule-labels-count))
+                                    domain-labels))
+       :rule-used (:orig rule)})))
+
+(defn- valid-input? [domain]
+  (and (not (str/blank? domain))
+       (not (.startsWith domain "."))))
 
 (defn parse [domain]
-  (let [domain (str/lower-case domain)]
-    (let [rule (get-prevailing-rule domain)]
-      (apply-rule rule domain))))
+  (if (valid-input? domain)
+    (let [domain (str/lower-case domain)]
+      (let [rule (get-prevailing-rule domain)]
+        (if rule
+          (apply-rule rule domain))))))
 
 (defprotocol domain-info
   (domain [s])

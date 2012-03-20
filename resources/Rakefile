@@ -1,0 +1,4 @@
+file_loc = File.join(File.dirname(__FILE__), 'steal_tests')
+require file_loc
+#require File.join(File.dirname(__FILE__), 'steal_tests.rake')
+
